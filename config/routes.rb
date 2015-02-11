@@ -12,9 +12,9 @@ Rails.application.routes.draw do
     resources :bids
   end
 
-  bid_path # /bids
-  item_path # /items
-  item_bids_path(bid.item) # /items/#{VARIABLE!!!!!}/bids/
+  # bid_path # /bids
+  # item_path # /items
+  # item_bids_path(bid.item) # /items/#{VARIABLE!!!!!}/bids/
 
   resources :users
 
