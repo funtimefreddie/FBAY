@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+
+  devise_for :users
+
   
   root "items#index"
 
@@ -13,6 +17,8 @@ Rails.application.routes.draw do
   item_bids_path(bid.item) # /items/#{VARIABLE!!!!!}/bids/
 
   resources :users
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

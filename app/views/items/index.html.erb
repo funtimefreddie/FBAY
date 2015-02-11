@@ -23,7 +23,7 @@
         <td><%= item.category %></td>
         <td><%= item.picture %></td>
         <td><%= item.end_time %></td>
-        <td><%= item.user_id %></td>
+        <td><%= link_to item.user.name, item.user %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -34,4 +34,6 @@
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Item', new_item_path %>
+<% end %>
