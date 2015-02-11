@@ -21,7 +21,7 @@ class BidsControllerTest < ActionController::TestCase
       post :create, bid: { amount: @bid.amount, item_id: @bid.item_id, user_id: @bid.user_id }
     end
 
-    assert_redirected_to bid_path(assigns(:bid))
+    assert_redirected_to item_bid_path(assigns(:bid))
   end
 
   test "should show bid" do
@@ -36,7 +36,7 @@ class BidsControllerTest < ActionController::TestCase
 
   test "should update bid" do
     patch :update, id: @bid, bid: { amount: @bid.amount, item_id: @bid.item_id, user_id: @bid.user_id }
-    assert_redirected_to bid_path(assigns(:bid))
+    assert_redirected_to item_bid_path(assigns(:bid))
   end
 
   test "should destroy bid" do
@@ -44,6 +44,6 @@ class BidsControllerTest < ActionController::TestCase
       delete :destroy, id: @bid
     end
 
-    assert_redirected_to bids_path
+    assert_redirected_to item_bids_path
   end
 end

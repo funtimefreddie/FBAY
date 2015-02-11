@@ -4,7 +4,12 @@ class BidsController < ApplicationController
   # GET /bids
   # GET /bids.json
   def index
-    @bids = Bid.all
+    if params[:item_id] 
+      @item = Item.find(params[:item_id])
+      @bids = @item.bids.all
+    else
+      @bids = Bid.all
+    end
   end
 
   # GET /bids/1
@@ -14,7 +19,7 @@ class BidsController < ApplicationController
 
   # GET /bids/new
   def new
-    @bid = Bid.new
+    @bid = Item.find(params[:item_id]).bids.build
   end
 
   # GET /bids/1/edit
@@ -24,15 +29,16 @@ class BidsController < ApplicationController
   # POST /bids
   # POST /bids.json
   def create
+
     @bid = Bid.new(bid_params)
 
     respond_to do |format|
       if @bid.save
-        format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
+        format.html { redirect_to item_bids_path(@bid.item), notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: @bid }
       else
-        format.html { render :new }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
+         format.html { render :new }
+         format.json { render json: @bid.errors, status: :unprocessable_entity }
       end
     end
   end
