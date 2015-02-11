@@ -1,0 +1,75 @@
+Searching 148 files for "bid_path"
+
+/Users/stephanieburns/Sites/fbay/app/views/bids/index.html.erb:
+   20          <td><%= bid.user_id %></td>
+   21          <td><%= link_to 'Show', bid %></td>
+   22:         <td><%= link_to 'Edit', edit_bid_path(bid) %></td>
+   23          <td><%= link_to 'Destroy', bid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   24        </tr>
+   ..
+   29  <br>
+   30  
+   31: <%= link_to 'New Bid', new_bid_path %>
+   32  
+
+/Users/stephanieburns/Sites/fbay/app/views/bids/show.html.erb:
+   16  </p>
+   17  
+   18: <%= link_to 'Edit', edit_bid_path(@bid) %> |
+   19  <%= link_to 'Back', bids_path %>
+   20  
+
+/Users/stephanieburns/Sites/fbay/test/controllers/bids_controller_test.rb:
+   22      end
+   23  
+   24:     assert_redirected_to bid_path(assigns(:bid))
+   25    end
+   26  
+   ..
+   37    test "should update bid" do
+   38      patch :update, id: @bid, bid: { amount: @bid.amount, item_id: @bid.item_id, user_id: @bid.user_id }
+   39:     assert_redirected_to bid_path(assigns(:bid))
+   40    end
+   41  
+
+5 matches across 3 files
+
+
+Searching 148 files for "bid_path"
+
+/Users/stephanieburns/Sites/fbay/app/views/bids/index.html.erb:
+   20          <td><%= bid.user_id %></td>
+   21          <td><%= link_to 'Show', bid %></td>
+   22:         <td><%= link_to 'Edit', edit_bid_path(bid) %></td>
+   23          <td><%= link_to 'Destroy', bid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   24        </tr>
+   ..
+   29  <br>
+   30  
+   31: <%= link_to 'New Bid', new_item_bid_path %>
+   32  
+
+/Users/stephanieburns/Sites/fbay/app/views/bids/show.html.erb:
+   16  </p>
+   17  
+   18: <%= link_to 'Edit', edit_bid_path(@bid) %> |
+   19  <%= link_to 'Back', bids_path %>
+   20  
+
+~/Sites/fbay/log/development.log:
+    <binary>
+
+/Users/stephanieburns/Sites/fbay/test/controllers/bids_controller_test.rb:
+   22      end
+   23  
+   24:     assert_redirected_to bid_path(assigns(:bid))
+   25    end
+   26  
+   ..
+   37    test "should update bid" do
+   38      patch :update, id: @bid, bid: { amount: @bid.amount, item_id: @bid.item_id, user_id: @bid.user_id }
+   39:     assert_redirected_to bid_path(assigns(:bid))
+   40    end
+   41  
+
+11 matches across 4 files
