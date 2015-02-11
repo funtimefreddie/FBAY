@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  
+  root "items#index"
+  
+  resources :bids
+
+  resources :items
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
