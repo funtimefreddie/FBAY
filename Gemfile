@@ -2,7 +2,11 @@ source 'https://rubygems.org'
 
 gem 'devise'
 
-
+gem 'fog'
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'figaro'
+gem 'aws-sdk'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
