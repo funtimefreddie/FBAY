@@ -6,15 +6,14 @@ class ItemsController < ApplicationController
   # GET /items.json
   
   def index
-
     @items = Item.all
-  
 
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    @bid = Bid.new
   end
 
   # GET /items/new
@@ -75,6 +74,10 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
+<<<<<<< HEAD
       params.require(:item).permit(:name, :description, :category_id, :picture, :end_time, :user_id, :image)
+=======
+      params.require(:item).permit(:name, :description, :category_id, :picture, :duration, :user_id)
+>>>>>>> fafb421fa6d16f5bc50acdf1d5d016fa588ca9d9
     end
 end
