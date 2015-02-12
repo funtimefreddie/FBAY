@@ -31,8 +31,8 @@
     <%= f.text_field :picture %>
   </div>
   <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+    <%= f.label :duration %><br>
+    <%= f.select :duration, [["1 day", 1],["1 week", 7],["3 weeks", 21]] %>
   </div>
   <div class="field">
   

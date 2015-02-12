@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.number_field :amount %>
+    <%= f.label :amount, "Enter bid in $" %><br>
+    <%= f.number_field :amount, :step => 0.01 %>
   </div>
   <div class="field">
-    <%= f.label :item_id %><br>
-    <%= f.number_field :item_id %>
+  
+    <%= f.hidden_field :item_id %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+  
+    <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
   <div class="actions">
     <%= f.submit %>
