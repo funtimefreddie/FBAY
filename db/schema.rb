@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150212074617) do
-=======
-ActiveRecord::Schema.define(version: 20150212070640) do
->>>>>>> fafb421fa6d16f5bc50acdf1d5d016fa588ca9d9
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,11 +38,8 @@ ActiveRecord::Schema.define(version: 20150212070640) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-<<<<<<< HEAD
     t.string   "image"
-=======
     t.integer  "duration"
->>>>>>> fafb421fa6d16f5bc50acdf1d5d016fa588ca9d9
   end
 
   create_table "users", force: :cascade do |t|

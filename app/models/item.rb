@@ -1,8 +1,8 @@
 class Item < ActiveRecord::Base
   mount_uploader :image, ImageUploader 
-	belongs_to :user
+  belongs_to :user
   belongs_to :category
-	has_many :bids
+  has_many :bids
 
   validate :name_must_start_with_f
 
@@ -19,8 +19,8 @@ class Item < ActiveRecord::Base
 
 
   def calc_end_time created_at, duration
-
-    return created_at + duration.days
+      return created_at + duration.days 
+  
 
   end
 
