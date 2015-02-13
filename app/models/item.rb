@@ -20,8 +20,6 @@ class Item < ActiveRecord::Base
 
   def calc_end_time created_at, duration
       return created_at + duration.days 
-  
-
   end
 
   def time_left_in_seconds
