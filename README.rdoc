@@ -5,20 +5,5 @@ To do list
 - filter list of items to search by category
 - all the stuff that happens at auction expiry - e.g., an alert to say you have won
 
-Instructions to upload to AWS on your local machine 
-- triple check that in .gitignore it has the following line 
-/config/secrets.yml 
-- add a file in config called secrets.yml with the following 
 
-development:
-  secret_key_base: 75eb509143ad4cf7b1698d761e85b6d311303ffa916c690d0f3fb2675b56f7082cda5a3393a771a5cbb45242b1a8c77c31b6228ebdf9990a1ccfc6e25c813e7b
-  aws_access_key_id: your_aws_key #CHANGETHIS
-  aws_secret_access_key: your_secret_key #CHANGETHIS
-test:
-  secret_key_base: 5392172eecb0d3f8027e2f73ee1546c1e7eebfa310a284ed3f0653d69f94c1e402a9923f4d0f6959c309d4a561c9e1ef5e9c07097ae378748e47320200c2c79d
-
-# Do not keep production secrets in the repository,
-# instead read values from the environment.
-production:
-  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 
