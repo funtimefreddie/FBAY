@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
 	belongs_to :user
   belongs_to :category
   has_many :bids
-
+  validates :bid_limit, numericality: { greater_than: 0 }
   validate :name_must_start_with_f
 
   attr_accessor :end_time
@@ -57,10 +57,20 @@ class Item < ActiveRecord::Base
 
   end
 
+  def leading_bidder
+    if bids.count ==0
+      return "No bidder"
+    else
+      return self.bids.max_by(&:amount).user
+    end
+  end
+
   def max_bid
-
-    return self.bids.max_by(&:amount)
-
+    if bids.count == 0
+      return 0
+    else
+      return self.bids.max_by(&:amount).amount
+    end
   end
 
 

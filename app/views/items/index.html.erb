@@ -22,7 +22,9 @@
         <th>Picture</th>
         <th>End time</th>
         <th>User</th>
-        <th>No. of bids<th>
+        <th>No. of bids</th>
+        <th>Highest bid</th>
+        <th>Leading bidder</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -37,6 +39,14 @@
           <td><%= item.time_present %></td>
           <td><%= link_to item.user.name, item.user %></td>
           <td><%= item.bids.count %></td>
+            <% if item.bids.count > 0 %>                     
+              <td><%= item.max_bid%></td>
+              <td><%= link_to item.leading_bidder.name, item.leading_bidder %></td>
+            <% else %>
+            <td></td>
+            <td></td>
+            <% end %>
+         
           <td><%= link_to 'Show', item %></td>
 
         </tr>
