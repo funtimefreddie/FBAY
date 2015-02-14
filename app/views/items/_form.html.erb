@@ -25,7 +25,10 @@
   </div>
   <div class="field">
     <%= f.label :category_id %><br>
-    <%= f.number_field :category_id %> 
+    <%= select("item", "category_id", 
+            Category.all.collect {|c| [ c.name, c.id ] }, 
+            {:prompt => "--select category--"}
+            ) %>  
   </div>
   <div class="field">
     <%= f.label :picture %><br>
