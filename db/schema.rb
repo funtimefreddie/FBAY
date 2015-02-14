@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20150212074617) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "image"
     t.integer  "duration"
+    t.string   "image"
   end
 
   create_table "users", force: :cascade do |t|
