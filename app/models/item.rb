@@ -42,5 +42,12 @@ class Item < ActiveRecord::Base
 
   end
 
+
+  def self.not_my_items user
+
+   Item.where.not(user_id: user.id).all
+  
+  end
+
 end
 

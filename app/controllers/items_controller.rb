@@ -6,7 +6,16 @@ class ItemsController < ApplicationController
   # GET /items.json
   
   def index
-    @items = Item.all
+
+    if user_signed_in?
+      @items = Item.not_my_items current_user
+    else
+      @items = Item.all
+    end  
+  end
+
+  def my_items
+    @items = Item.where(user_id: current_user.id)
 
   end
 
