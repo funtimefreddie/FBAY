@@ -43,11 +43,32 @@ class Item < ActiveRecord::Base
   end
 
 
-  def self.not_my_items user
+  # def self.not_my_items user
 
-   Item.where.not(user_id: user.id).all
+  #   if user == nil
+  #     return Item.all
+  #   else
+  #     Item.where.not(user_id: user.id).all
+  #   end
   
+  # end
+
+  def self.show_items user_id, category_id
+
+      list = []
+       
+      if category_id == 0
+        list = Item.where.not(user_id: user_id).all
+      else
+        list = Item.where('user_id != ? AND category_id = ?', user_id, category_id)
+      end
+
+      return list
+ 
+
   end
+
+  
 
 end
 

@@ -2,39 +2,47 @@
 
 <h1>Listing Items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Picture</th>
-      <th>End time</th>
-      <th>User</th>
-      <th>No. of bids<th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if @items.count > 0 %>
 
-  <tbody>
-    <% @items.each do |item| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-
-        <td><%= Category.find(item.category_id).name %></td>
-        <td><%= image_tag item.picture_url(:large).to_s %></td>
-        <td><%= item.time_present %></td>
-
-        <td><%= link_to item.user.name, item.user %></td>
-        <td><%= item.bids.count %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Picture</th>
+        <th>End time</th>
+        <th>User</th>
+        <th>No. of bids<th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.description %></td>
+
+          <td><%= Category.find(item.category_id).name %></td>
+          <td><%= image_tag item.picture_url(:large).to_s %></td>
+          <td><%= item.time_present %></td>
+
+          <td><%= link_to item.user.name, item.user %></td>
+          <td><%= item.bids.count %></td>
+          <td><%= link_to 'Show', item %></td>
+          <td><%= link_to 'Edit', edit_item_path(item) %></td>
+          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+
+No items to display
+
+<% end %>
 
 <br>
 

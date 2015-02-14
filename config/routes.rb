@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get '/my_items' => 'items#my_items', as: 'my_items'
 
+  
+
   resources :items do 
     resources :bids
   end

@@ -7,11 +7,17 @@ class ItemsController < ApplicationController
   
   def index
 
-    if user_signed_in?
-      @items = Item.not_my_items current_user
-    else
-      @items = Item.all
-    end  
+      @category_id = params[:filtered_category_id].to_i
+
+      if user_signed_in?
+        user_id = current_user.id
+      else
+        user_id = 0
+      end
+
+      @items = Item.show_items user_id, @category_id   
+ 
+   
   end
 
   def my_items
@@ -29,6 +35,8 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
+
+
 
   # GET /items/1/edit
   def edit
@@ -83,6 +91,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
+      # byebug
       params.require(:item).permit(:name, :description, :category_id, :picture, :duration, :user_id)
     end
 end

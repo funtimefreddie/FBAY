@@ -2,36 +2,53 @@
 
 <h1>Listing Items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Picture</th>
-      <th>End time</th>
-      <th>User</th>
-      <th>No. of bids<th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @items.each do |item| %>
+  <%= link_to 'Unfilter', items_path %><br>
+
+  <% Category.all.each do |c| %>
+    <%= link_to c.name, items_path(:filtered_category_id => c.id)%>
+  <% end %>
+
+<br>
+
+<% if @items.count > 0 %>
+
+  <table>
+    <thead>
       <tr>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= Category.find(item.category_id).name %></td>
-        <td><%= image_tag item.picture_url(:large).to_s %></td>
-        <td><%= item.time_present %></td>
-        <td><%= link_to item.user.name, item.user %></td>
-        <td><%= item.bids.count %></td>
-        <td><%= link_to 'Show', item %></td>
-
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Picture</th>
+        <th>End time</th>
+        <th>User</th>
+        <th>No. of bids<th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.description %></td>
+          <td><%= Category.find(item.category_id).name %></td>
+          <td><%= image_tag item.picture_url(:large).to_s %></td>
+          <td><%= item.time_present %></td>
+          <td><%= link_to item.user.name, item.user %></td>
+          <td><%= item.bids.count %></td>
+          <td><%= link_to 'Show', item %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+
+No items to display
+
+<% end %>
 
 <br>
 
