@@ -18,18 +18,18 @@ class Item < ActiveRecord::Base
 
   end
 
-
+  # calculates end time based on created at and duration
   def calc_end_time created_at, duration
       return created_at + duration.days 
   end
 
+  # calculated time left to expiry
   def time_left_in_seconds
-
     @end_time = calc_end_time(created_at, duration)
     return @end_time - Time.now
-
   end
 
+  # shows time left in terms on days, hours, minutes, seconds
   def time_present
 
     t = time_left_in_seconds
@@ -42,17 +42,7 @@ class Item < ActiveRecord::Base
 
   end
 
-
-  # def self.not_my_items user
-
-  #   if user == nil
-  #     return Item.all
-  #   else
-  #     Item.where.not(user_id: user.id).all
-  #   end
-  
-  # end
-
+  #show items to exclude user, and include category, if defined
   def self.show_items user_id, category_id
 
       list = []
@@ -63,10 +53,19 @@ class Item < ActiveRecord::Base
         list = Item.where('user_id != ? AND category_id = ?', user_id, category_id)
       end
 
-      return list
- 
+      return list 
 
   end
+
+  def max_bid
+
+    return self.bids.max_by(&:amount)
+
+  end
+
+
+
+
 
   
 
