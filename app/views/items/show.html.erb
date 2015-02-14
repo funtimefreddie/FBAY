@@ -17,7 +17,7 @@
 
 <p>
   <strong>Picture:</strong>
-  <%= @item.picture %>
+  <%= image_tag @item.picture_url(:large).to_s %>
 </p>
 
 <p>

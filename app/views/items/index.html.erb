@@ -22,7 +22,7 @@
         <td><%= item.name %></td>
         <td><%= item.description %></td>
         <td><%= Category.find(item.category_id).name %></td>
-        <td><%= item.picture %></td>
+        <td><%= image_tag item.picture_url(:preview).to_s %></td>
         <td><%= item.time_present %></td>
         <td><%= link_to item.user.name, item.user %></td>
         <td><%= item.bids.count %>
