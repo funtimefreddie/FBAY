@@ -6,7 +6,7 @@ class BidsController < ApplicationController
   def index
     if params[:item_id] 
       @item = Item.find(params[:item_id])
-      @bids = Bid.where("item_id = #{item_id}").order(amount: :desc)
+      @bids = Bid.all
     else
       @bids = Bid.all.order(amount: :desc)
     end

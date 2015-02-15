@@ -1,5 +1,6 @@
 To do list
 
+- enable filters in items#index 
 - sort list of bids on item/show page
 - data validation for bids: cannot bid if already winning, cannot bid less than winning bid
 - filter list of items to search by category

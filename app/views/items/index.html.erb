@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<div class = "jumbotron">
+  <h1> Welcome to Fbay </h1> 
+  <p> The world's premier auction site for all things "F"</p>
+ </div>
+
 <h1>Listing Items</h1>
 
 
-  <%= link_to 'Unfilter', items_path %><br>
+<%= link_to 'Unfilter', items_path %><br>
 
 
 <ul class = "nav nav-tabs">
@@ -19,19 +24,7 @@
   <table class ="table table-striped">
     <thead>
       <tr>
-
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= item.category.name %></td>
-        <td><%= image_tag item.picture_url(:large).to_s %></td>
-        <td><%= item.time_present %></td>
-        <td><%= link_to item.user.name, item.user %></td>
-        <td><%= item.bids.count %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-<!--         <th>Name</th>
+        <th>Name</th>
         <th>Description</th>
         <th>Category</th>
         <th>Picture</th>
@@ -41,7 +34,7 @@
         <th>Highest bid</th>
         <th>Leading bidder</th>
         <th colspan="3"></th>
-      </tr> -->
+      </tr>
     </thead>
 
     <tbody>

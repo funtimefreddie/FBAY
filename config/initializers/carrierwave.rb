@@ -4,9 +4,8 @@ CarrierWave.configure do |config|
         :provider => 'AWS',
         :aws_access_key_id => ENV['aws_access_key_id'],
         :aws_secret_access_key => ENV['aws_secret_access_key'],
-        :region => 'eu-west-1' # change
+        :region => 'us-west-2' # change
     }
-    config.fog_directory = 'freddiesmedia' # change
+    config.fog_directory = 'mkmbeachbucket' # change
     config.fog_public = true
-
 end
