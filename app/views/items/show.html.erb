@@ -1,13 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>User:</strong>
+  <%= @item.user.name %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @item.name %>
 </p>
+
 <p>
-<div>
-  <%= image_tag(@item.image)%>
-</div>
 <p>
   <strong>Description:</strong>
   <%= @item.description %>
@@ -19,7 +22,7 @@
 </p>
 
 <p>
-  <strong>Picture:</strong>
+
   <%= image_tag @item.picture_url(:preview).to_s %>
 </p>
 
@@ -28,10 +31,10 @@
   <%= @item.time_present %>
  
 </p>
-
 <p>
-  <strong>User:</strong>
-  <%= @item.user.name %>
+  <strong>Maximum bids per user</strong>
+  <%= @item.bid_limit %>
+ 
 </p>
 
 <table>
@@ -48,9 +51,17 @@
 </table>
 
 <% if @item.user != current_user %>
-  <%= link_to 'New Bid', new_item_bid_path(:item_id => @item.id) %><br>
+
+  <% if current_user.bids.where(item_id: @item.id).count < @item.bid_limit %> 
+    <%= link_to 'New Bid', new_item_bid_path(:item_id => @item.id) %><br>
+  <% else %>
+    No more bids allowed
+  <% end %><br>
+
+  <%= link_to 'Back', items_path %>
+<% else %>
+  <%= link_to 'Edit', edit_item_path(@item) %><br>
+  <%= link_to 'Back', my_items_path %>
 <% end %>
 
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>

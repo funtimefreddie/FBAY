@@ -1,4 +1,3 @@
-
 <%= form_for @item, html: { multipart: true} do |f| %>
 
   <% if @item.errors.any? %>
@@ -13,35 +12,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
- 
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= select("item", "category_id", 
-            Category.all.collect {|c| [ c.name, c.id ] }, 
-            {:prompt => "--select category--"}
-            ) %>  
-  </div>
-  <div class="field">
-    <%= f.label :picture %><br>
-    <%= f.file_field :picture %>
-  </div>
-  <div class="field">
-    <%= f.label :duration %><br>
-    <%= f.select :duration, [["1 day", 1],["1 week", 7],["3 weeks", 21]] %>
-  </div>
-  <div class="field">
-  
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <form class="form-horizontal">
+
+    <div class="form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="form-group">
+      <%= f.label :category_id %><br>
+      <%= select("item", "category_id", 
+              Category.all.collect {|c| [ c.name, c.id ] }, 
+              {:prompt => "--select category--"}
+              ) %>  
+    </div>
+    <div class="form-group">
+      <%= f.label :picture %><br>
+      <%= f.file_field :picture %>
+    </div>
+    <div class="form-group">
+      <%= f.label :duration %><br>
+      <%= f.select :duration, [["1 day", 1],["1 week", 7],["3 weeks", 21]] %>
+    </div>
+    <div class="form-group">
+      <%= f.label :bid_limit %><br>
+      <%= f.number_field :bid_limit %>
+    </div>
+    <div class="form-group">
+    
+      <%= f.hidden_field :user_id, value: current_user.id %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </form> 
+
+
 <% end %>

@@ -2,23 +2,24 @@
 
 <h1>Listing Items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Picture</th>
-      <th>End time</th>
-      <th>User</th>
-      <th>No. of bids<th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @items.each do |item| %>
+  <%= link_to 'Unfilter', items_path %><br>
+
+
+<ul class = "nav nav-tabs">
+  <% Category.all.each do |c| %>
+  <li role="presentation"><%= link_to c.name, items_path(:filtered_category_id => c.id)%></li>
+  <% end %>
+</ul>
+
+<br>
+
+<% if @items.count > 0 %>
+
+  <table class ="table table-striped">
+    <thead>
       <tr>
+
         <td><%= item.name %></td>
         <td><%= item.description %></td>
         <td><%= item.category.name %></td>
@@ -29,13 +30,54 @@
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<!--         <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Picture</th>
+        <th>End time</th>
+        <th>User</th>
+        <th>No. of bids</th>
+        <th>Highest bid</th>
+        <th>Leading bidder</th>
+        <th colspan="3"></th>
+      </tr> -->
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.description %></td>
+          <td><%= Category.find(item.category_id).name %></td>
+          <td><%= image_tag item.picture_url(:large).to_s %></td>
+          <td><%= item.time_present %></td>
+          <td><%= link_to item.user.name, item.user %></td>
+          <td><%= item.bids.count %></td>
+            <% if item.bids.count > 0 %>                     
+              <td><%= item.max_bid%></td>
+              <td><%= link_to item.leading_bidder.name, item.leading_bidder %></td>
+            <% else %>
+            <td></td>
+            <td></td>
+            <% end %>
+         
+          <td><%= link_to 'Show', item %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+
+<p> No items to display </p>
+
+<% end %>
 
 <br>
 
 <% if user_signed_in? %>
-  <%= link_to 'New Item', new_item_path %>
+  <%= link_to 'My items', my_items_path, class: 'btn btn-primary' %>
+  <%= link_to 'New Item', new_item_path,  class: 'btn btn-success' %>
 <% end %>

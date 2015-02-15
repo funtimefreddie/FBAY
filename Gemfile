@@ -5,7 +5,7 @@ gem 'figaro'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-
+gem 'bootstrap-sass'
 
 gem 'devise'
 

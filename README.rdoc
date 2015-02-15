@@ -5,5 +5,15 @@ To do list
 - filter list of items to search by category
 - all the stuff that happens at auction expiry - e.g., an alert to say you have won
 
+To pull
 
+- git pull origin master
+- create application.yml file in config/locales directory
+- add my AWS details - will send separately!
+
+On Sat 14th, do the following (to remove all the data in your db)
+- rake db:drop, rake db:setup, rake db:migrate, rake db:seed
+
+Other times, just do
+- rake db:seed
 
