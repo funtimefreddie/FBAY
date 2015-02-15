@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.all
-
   end
 
   # GET /items/1

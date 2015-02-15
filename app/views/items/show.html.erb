@@ -34,18 +34,18 @@
   <%= @item.user.name %>
 </p>
 
-<p>
-  <strong>Bids:</strong><br>
-
-  <% @item.bids.each do |b| %>
-
-    <%= link_to b.user.name, b.user %></td>
-    
-    <%= b.amount %><br>
-
+<table>
+  <tr>
+    <th><%= link_to "User" %></th>
+    <th><%= link_to "Bid" %></th>
+  </tr>
+  <% @item.bids.sort_by &:amount do |b| %>
+  <tr>
+    <td><%= link_to b.user.name, b.user %></td>
+    <td><%= number_to_currency(b.amount) %></td>
+  </tr>
   <% end %>
-
-</p>
+</table>
 
 <% if @item.user != current_user %>
   <%= link_to 'New Bid', new_item_bid_path(:item_id => @item.id) %><br>

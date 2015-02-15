@@ -6,9 +6,9 @@ class BidsController < ApplicationController
   def index
     if params[:item_id] 
       @item = Item.find(params[:item_id])
-      @bids = @item.bids.all
+      @bids = Bid.where("item_id = #{item_id}").order(amount: :desc)
     else
-      @bids = Bid.all
+      @bids = Bid.all.order(amount: :desc)
     end
   end
 
@@ -66,6 +66,10 @@ class BidsController < ApplicationController
       format.html { redirect_to bids_url, notice: 'Bid was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def order
+  @bids = Bid.where("item_id = 9").order(bid_amount: :desc) 
   end
 
   private
