@@ -1,42 +1,44 @@
 <p id="notice"><%= notice %></p>
+<div class ="panel panel-info"> 
+  <div class = "panel panel-heading">
+    <p>
+      <strong>Name:</strong>
+      <%= @item.name %>
+    </p>
+  </div>
+  <div class ="panel panel-body">
+  <p>
+    <%= image_tag @item.picture_url(:preview).to_s %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @item.user.name %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @item.description %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @item.user.name %>
+  </p>
+  <p>
 
-<p>
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+  <p>
+    <strong>Category:</strong>
+    <%= Category.find(@item.category_id).name %>
+  </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= Category.find(@item.category_id).name %>
-</p>
+  <p>
+    <strong>Maximum bids per user</strong>
+    <%= @item.bid_limit %>
+  </p>
+  <div class="panel panel-footer"> 
+    <strong>Time left:</strong>
+    <%= @item.time_present %>
+</div>
+</div>
+</div>
 
-<p>
-  <%= image_tag @item.picture_url(:preview).to_s %>
-</p>
-
-<p>
-  <strong>Time left:</strong>
-  <%= @item.time_present %>
- 
-</p>
-<p>
-  <strong>Maximum bids per user</strong>
-  <%= @item.bid_limit %>
- 
-</p>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th><%= link_to "Amount", :sort => "amount" %></th>

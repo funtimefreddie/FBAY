@@ -8,8 +8,7 @@ gem 'mini_magick'
 gem 'bootstrap-sass'
 
 gem 'devise'
-
-gem 'fog'
+gem 'bootstrap_form'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'figaro'
