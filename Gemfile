@@ -9,8 +9,6 @@ gem 'bootstrap-sass'
 
 gem 'devise'
 gem 'bootstrap_form'
-gem 'mini_magick'
-gem 'carrierwave'
 gem 'figaro'
 gem 'aws-sdk'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
