@@ -7,7 +7,7 @@ class Item < ActiveRecord::Base
   validates :bid_limit, numericality: { greater_than: 0 }
   validate :name_must_start_with_f
 
-  attr_accessor :end_time
+  attr_accessor :end_time, :open
 
   def name_must_start_with_f
 
@@ -26,7 +26,17 @@ class Item < ActiveRecord::Base
   # calculated time left to expiry
   def time_left_in_seconds
     @end_time = calc_end_time(created_at, duration)
-    return @end_time - Time.now
+
+
+    time_left = [0, @end_time - Time.now].max
+
+    if time_left == 0
+      @open = false
+    else
+      @open = true
+    end
+
+    return time_left
   end
 
   # shows time left in terms on days, hours, minutes, seconds
@@ -34,11 +44,19 @@ class Item < ActiveRecord::Base
 
     t = time_left_in_seconds
 
-    mm, ss = t.divmod(60)            #=> [4515, 21]
-    hh, mm = mm.divmod(60)           #=> [75, 15]
-    dd, hh = hh.divmod(24) 
-              #=> [3, 3]
-    return "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+    if @open   
+
+      mm, ss = t.divmod(60)            #=> [4515, 21]
+      hh, mm = mm.divmod(60)           #=> [75, 15]
+      dd, hh = hh.divmod(24) 
+                #=> [3, 3]
+      return "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+
+    else
+
+      return @open
+
+    end
 
   end
 
@@ -57,6 +75,7 @@ class Item < ActiveRecord::Base
 
   end
 
+  # returns user with highest bid
   def leading_bidder
     if bids.count ==0
       return "No bidder"
@@ -65,12 +84,27 @@ class Item < ActiveRecord::Base
     end
   end
 
+  # returns highest bid amount
   def max_bid
     if bids.count == 0
       return 0
     else
       return self.bids.max_by(&:amount).amount
     end
+  end
+
+  # returns maximum bid from a specific user
+  def max_user_bid user
+    if bids.where(user_id: user.id).count == 0
+      return 0
+    else
+      return self.bids.where(user_id: user.id).max_by(&:amount).amount
+    end
+  end
+
+  # removes all data
+  def self.remove_all
+    Item.all.each { |i| i.destroy}
   end
 
 

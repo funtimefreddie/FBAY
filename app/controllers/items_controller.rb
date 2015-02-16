@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+  layout 'header'
 
   # GET /items
   # GET /items.json
@@ -23,6 +24,10 @@ class ItemsController < ApplicationController
   def my_items
     @items = Item.where(user_id: current_user.id)
 
+  end
+
+  def bidded_items
+    @items = current_user.bidded_items
   end
 
   # GET /items/1

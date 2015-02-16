@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Items</h1>
+<h1>Search Items</h1>
 
 
   <%= link_to 'Unfilter', items_path %><br>
@@ -62,7 +62,4 @@ No items to display
 
 <br>
 
-<% if user_signed_in? %>
-  <%= link_to 'My items', my_items_path %>
-  <%= link_to 'New Item', new_item_path %>
-<% end %>
+
