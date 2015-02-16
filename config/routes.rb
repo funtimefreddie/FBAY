@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   root "items#index"
   get '/my_items' => 'items#my_items', as: 'my_items'
+  get '/bidded_items' => 'items#bidded_items', as: 'bidded_items'
 
   resources :items do 
     resources :bids
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
   # item_bids_path(bid.item) # /items/#{VARIABLE!!!!!}/bids/
 
   resources :users
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

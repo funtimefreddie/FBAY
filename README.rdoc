@@ -2,15 +2,15 @@ To do list
 
 - enable filters in items#index 
 - sort list of bids on item/show page
-- data validation for bids: cannot bid if already winning, cannot bid less than winning bid
-- filter list of items to search by category
 - all the stuff that happens at auction expiry - e.g., an alert to say you have won
+- back button on show page, when accessed via bidded items page, goes back to wrong place - fix
 
 To pull
 
 - git pull origin master
 - create application.yml file in config/locales directory
-- add my AWS details - will send separately!
+- add YOUR aws details
+
 
 On Sat 14th, do the following (to remove all the data in your db)
 - rake db:drop, rake db:setup, rake db:migrate, rake db:seed
