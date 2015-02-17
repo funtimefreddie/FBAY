@@ -9,26 +9,11 @@ class Item < ActiveRecord::Base
   validates :bid_limit, numericality: { greater_than: 0 }
   validate :name_must_start_with_f
 
-  scope :not_user, -> (user) {where('user_id != ?', user.id) }
-  scope :category, -> (category) {where(:category => category)}
- 
+  scope :not_user, -> (user_id) {where('user_id != ?', user_id)}
+  scope :category, -> (category_id) {where(:category => category_id)}  
 
   attr_accessor :end_time, :open
-
-   #show items to exclude user, and include category, if defined
-  def self.show_items user_id, category_id
-
-      list = []
-       
-      if category_id == 0
-        list = Item.where.not(user_id: user_id).all
-      else
-        list = Item.where('user_id != ? AND category_id = ?', user_id, category_id)
-      end
-
-      return list 
-
-  end
+  
 
   def name_must_start_with_f
 

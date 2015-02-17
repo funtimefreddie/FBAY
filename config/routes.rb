@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   
-  root "items#index"
+  root "items#welcome"
   get '/my_items' => 'items#my_items', as: 'my_items'
   get '/bidded_items' => 'items#bidded_items', as: 'bidded_items'
+  get '/welcome' => 'items#welcome'
 
   resources :items do 
     resources :bids

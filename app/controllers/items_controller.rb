@@ -5,26 +5,18 @@ class ItemsController < ApplicationController
 
   # GET /items
   # GET /items.json
+
+  def welcome
+  end
   
   def index
-    @items = Item.all
-
-      @category_id = params[:filtered_category_id].to_i
-
-      if user_signed_in?
-        user_id = current_user.id
-      else
-        user_id = 0
-      end
-
-      @items = Item.show_items user_id, @category_id   
- 
-   
+    @category_id = params[:filtered_category_id].to_i
+    @user_id = user_signed_in? ? current_user.id : 0     
+    @items = @category_id == 0 ? Item.not_user(@user_id) : Item.not_user(@user_id).category(@category_id)
   end
 
   def my_items
-    @items = Item.where(user_id: current_user.id)
-
+    @items = current_user.items
   end
 
   def bidded_items

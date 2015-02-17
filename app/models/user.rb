@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   has_many :bids
 
 
-  # creates list of items user has bid on
-  # use a scope here
+  # creates list of items user has bid on  
+  # use a scope here instead
   def bidded_items
 
     items =[]
