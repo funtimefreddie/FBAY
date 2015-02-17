@@ -22,8 +22,5 @@ class Bid < ActiveRecord::Base
   #   end
   # end
 
-  def self.remove_all
-    Bid.all.each { |b| b.destroy}
-  end
 
 end

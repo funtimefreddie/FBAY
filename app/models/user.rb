@@ -8,11 +8,8 @@ class User < ActiveRecord::Base
   has_many :bids
 
 
-  def self.remove_all
-    User.all.each { |u| u.destroy}
-  end
-
   # creates list of items user has bid on
+  # use a scope here
   def bidded_items
 
     items =[]

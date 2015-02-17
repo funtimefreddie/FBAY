@@ -1,13 +1,34 @@
 class Item < ActiveRecord::Base
 
   mount_uploader :picture, PictureUploader
+
 	belongs_to :user
   belongs_to :category
   has_many :bids
+
   validates :bid_limit, numericality: { greater_than: 0 }
   validate :name_must_start_with_f
 
+  scope :not_user, -> (user) {where('user_id != ?', user.id) }
+  scope :category, -> (category) {where(:category => category)}
+ 
+
   attr_accessor :end_time, :open
+
+   #show items to exclude user, and include category, if defined
+  def self.show_items user_id, category_id
+
+      list = []
+       
+      if category_id == 0
+        list = Item.where.not(user_id: user_id).all
+      else
+        list = Item.where('user_id != ? AND category_id = ?', user_id, category_id)
+      end
+
+      return list 
+
+  end
 
   def name_must_start_with_f
 
@@ -58,22 +79,7 @@ class Item < ActiveRecord::Base
 
     end
 
-  end
-
-  #show items to exclude user, and include category, if defined
-  def self.show_items user_id, category_id
-
-      list = []
-       
-      if category_id == 0
-        list = Item.where.not(user_id: user_id).all
-      else
-        list = Item.where('user_id != ? AND category_id = ?', user_id, category_id)
-      end
-
-      return list 
-
-  end
+  end 
 
   # returns user with highest bid
   def leading_bidder
@@ -100,11 +106,6 @@ class Item < ActiveRecord::Base
     else
       return self.bids.where(user_id: user.id).max_by(&:amount).amount
     end
-  end
-
-  # removes all data
-  def self.remove_all
-    Item.all.each { |i| i.destroy}
   end
 
 

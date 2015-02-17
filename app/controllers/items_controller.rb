@@ -9,16 +9,15 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
 
+      @category_id = params[:filtered_category_id].to_i
 
-      # @category_id = params[:filtered_category_id].to_i
+      if user_signed_in?
+        user_id = current_user.id
+      else
+        user_id = 0
+      end
 
-      # if user_signed_in?
-      #   user_id = current_user.id
-      # else
-      #   user_id = 0
-      # end
-
-      # @items = Item.show_items user_id, @category_id   
+      @items = Item.show_items user_id, @category_id   
  
    
   end
