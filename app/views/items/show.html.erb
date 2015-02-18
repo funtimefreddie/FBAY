@@ -49,7 +49,7 @@
   </thead>
 
   <tbody>
-    <% @item.bids.each do |bid| %>
+    <% @item.bids.order("amount desc").each do |bid| %>
       <tr>
         <td><%= bid.amount %></td>
         <td><%= bid.item_id %></td>
