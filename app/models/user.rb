@@ -7,6 +7,20 @@ class User < ActiveRecord::Base
   has_many :items
   has_many :bids
 
+  ROLES = %w[Admin Author Banned]
+
+  def admin?
+    self.role == "Admin"
+  end
+
+  def author?
+    self.role == "Author"
+  end
+
+  def banned?
+    self.role == "Banned"
+  end
+
   # shows alert to user for a particular item
   def alert item
 
