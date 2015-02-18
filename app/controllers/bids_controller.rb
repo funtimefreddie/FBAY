@@ -20,6 +20,7 @@ class BidsController < ApplicationController
   # GET /bids/new
   def new
     @bid = Item.find(params[:item_id]).bids.build
+    authorize! :create, @bid
   end
 
   # GET /bids/1/edit

@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @category_id = params[:filtered_category_id].to_i
     @user_id = user_signed_in? ? current_user.id : 0     
     @items = @category_id == 0 ? Item.not_user(@user_id) : Item.not_user(@user_id).category(@category_id)
+    # @items = Item.all
   end
 
   def my_items

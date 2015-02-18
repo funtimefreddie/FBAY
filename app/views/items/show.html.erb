@@ -54,14 +54,15 @@
 </table>
 
 
-<% if @item.user != current_user %>
- 
+<% if @item.user != current_user %> 
   <%= link_to 'New Bid', new_item_bid_path(:item_id => @item.id) %><br>
-  <%= link_to 'Back', items_path %><br>
-  
-<% else %>
-  <%= link_to 'Edit', edit_item_path(@item) %><br>
+  <%= link_to 'Back', items_path %><br>  
+<% else %>  
   <%= link_to 'Back', my_items_path %><br>
+<% end %>
+
+<% if can? :update, @item %>
+  <%= link_to 'Edit', edit_item_path(@item) %><br>
 <% end %>
 
 
