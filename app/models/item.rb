@@ -12,8 +12,12 @@ class Item < ActiveRecord::Base
   scope :not_user, -> (user_id) {where('user_id != ?', user_id)}
   scope :category, -> (category_id) {where(:category => category_id)}  
 
-  attr_accessor :end_time, :open
-  
+  scope :user_bids, -> (user) {
+    joins('LEFT JOIN bids ON items.id = bids.item_id').    
+    where('bids.user_id = ?', user)
+  }
+
+  attr_accessor :end_time, :open  
 
   def name_must_start_with_f
 

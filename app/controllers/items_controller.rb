@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def bidded_items
-    @items = current_user.bidded_items
+    @items = Item.user_bids(current_user)
   end
 
   # GET /items/1

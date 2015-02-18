@@ -7,26 +7,6 @@ class User < ActiveRecord::Base
   has_many :items
   has_many :bids
 
-
-  # creates list of items user has bid on  
-  # use a scope here instead
-  def bidded_items
-
-    items =[]
-
-    bids.each { |b|
-
-      if items.include? b.item
-      else     
-        items << b.item
-      end
-
-    }
-
-    return items
-
-  end
-
   # shows alert to user for a particular item
   def alert item
 
