@@ -33,7 +33,6 @@ class BidsController < ApplicationController
 
     @bid = Bid.new(bid_params)
 
-
     respond_to do |format|
       if @bid.save
         format.html { redirect_to @bid.item, notice: 'Bid was successfully created.' }

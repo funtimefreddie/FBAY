@@ -1,20 +1,12 @@
 To do list
 
-- enable filters in items#index 
-- sort list of bids on item/show page
-- all the stuff that happens at auction expiry - e.g., an alert to say you have won
-- back button on show page, when accessed via bidded items page, goes back to wrong place - fix
+- email all bidders at the end of auction
+- push to heroku
 
 To pull
 
 - git pull origin master
 - create application.yml file in config/locales directory
 - add YOUR aws details
-
-
-On Sat 14th, do the following (to remove all the data in your db)
-- rake db:drop, rake db:setup, rake db:migrate, rake db:seed
-
-Other times, just do
 - rake db:seed
 
