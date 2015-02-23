@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
   # GET /items.json
 
   def welcome
+    
   end
   
   def index

@@ -168,9 +168,11 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    freddies_gem (0.0.1)
     globalid (0.3.2)
       activesupport (>= 4.1.0)
     hike (1.2.3)
+    holamkm (0.0.0)
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
@@ -286,6 +288,8 @@ DEPENDENCIES
   devise
   figaro
   fog
+  freddies_gem (~> 0.0.1)
+  holamkm (~> 0.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick
