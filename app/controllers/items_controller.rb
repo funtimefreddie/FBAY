@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
   # GET /items.json
 
   def welcome
+    
   end
   
   def index
@@ -27,7 +28,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @bid = Bid.new
+    @bid = @item.bids.build
   end
 
   # GET /items/new
@@ -39,11 +40,14 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    authorize! :update, @item
   end
 
   # POST /items
   # POST /items.json
   def create
+
+    # byebug
   
     @item = Item.new(item_params)
 

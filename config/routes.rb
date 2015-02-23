@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/my_items' => 'items#my_items', as: 'my_items'
   get '/bidded_items' => 'items#bidded_items', as: 'bidded_items'
   get '/welcome' => 'items#welcome'
+  post 'items/:id' => 'bids#create'
 
   resources :items do 
     resources :bids

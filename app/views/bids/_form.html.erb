@@ -1,4 +1,4 @@
-<%= form_for @bid, url: item_bids_path(params[:item_id]) do |f| %>
+<%= form_for @bid, url: item_path(params[:id]) do |f| %>
   <% if @bid.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
@@ -15,12 +15,10 @@
     <%= f.label :amount, "Enter bid in $" %><br>
     <%= f.number_field :amount, :step => 0.01 %>
   </div>
-  <div class="field">
-  
-    <%= f.hidden_field :item_id %>
+  <div class="field">  
+    <%= f.hidden_field :item_id, value: @bid.item.id %>
   </div>
-  <div class="field">
-  
+  <div class="field">  
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
   <div class="actions">

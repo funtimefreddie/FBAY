@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :items
   has_many :bids
 
-  ROLES = %w[Admin Author Banned]
+  # ROLES = %w[Admin Author Banned]
 
   def admin?
     self.role == "Admin"
