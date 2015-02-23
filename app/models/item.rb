@@ -97,6 +97,17 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def email_bidders
+
+    User.item_bidders(self).uniq.each {
+
+
+    }
+  end
+
+
+  end
+
 
 
 

@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   has_many :items
   has_many :bids
 
+  scope :item_bidders, -> (item) {    
+    joins('LEFT JOIN bids ON users.id = bids.user_id').    
+    where('bids.item_id = ?', item)
+  }
+
   # ROLES = %w[Admin Author Banned]
 
   def admin?
