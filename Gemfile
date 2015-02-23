@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 
-gem 'figaro'
+gem 'cancan'
+gem 'holamkm', '0.0.1'
+
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
@@ -50,6 +52,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 1.3.2'
 end
 

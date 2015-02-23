@@ -1,7 +1,7 @@
 <div class = "jumbotron">
   <h1> Welcome to Fbay </h1> 
   <p> The world's premier auction site for all things "F"</p>
-  <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-default' %> 
+ 
 </div>
 
 <h2>Sign up</h2>
@@ -30,6 +30,11 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.hidden_field :role, value: "Author" %>
   </div>
 
   <div class="actions">

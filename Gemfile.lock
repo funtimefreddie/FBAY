@@ -62,6 +62,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    cancan (1.6.10)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -170,6 +171,7 @@ GEM
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hike (1.2.3)
+    holamkm (0.0.1)
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
@@ -279,11 +281,13 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap_form
   byebug
+  cancan
   carrierwave
   coffee-rails (~> 4.1.0)
   devise
   figaro
   fog
+  holamkm (= 0.0.1)
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick
@@ -291,7 +295,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  spring
+  spring (~> 1.3.2)
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

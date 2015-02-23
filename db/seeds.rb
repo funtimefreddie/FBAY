@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# if Category.count == 0
+if Category.count == 0
   Category.create(name: "Food/drink")
   Category.create(name: "Weapons")
   Category.create(name: "Vehicles")
@@ -14,4 +14,9 @@
   Category.create(name: "Household")
   Category.create(name: "People")
   Category.create(name: "Misc")
-# end
+end
+
+
+Bid.create(user_id: 13, item_id: 21, amount: 5)
+Bid.create(user_id: 13, item_id: 22, amount: 5)
+

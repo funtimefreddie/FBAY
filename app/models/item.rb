@@ -1,13 +1,23 @@
 class Item < ActiveRecord::Base
 
   mount_uploader :picture, PictureUploader
+
 	belongs_to :user
   belongs_to :category
   has_many :bids
+
   validates :bid_limit, numericality: { greater_than: 0 }
   validate :name_must_start_with_f
 
-  attr_accessor :end_time
+  scope :not_user, -> (user_id) {where('user_id != ?', user_id)}
+  scope :category, -> (category_id) {where(:category => category_id)}  
+
+  scope :user_bids, -> (user) {
+    joins('LEFT JOIN bids ON items.id = bids.item_id').    
+    where('bids.user_id = ?', user)
+  }
+
+  attr_accessor :end_time, :open  
 
   def name_must_start_with_f
 
@@ -26,7 +36,17 @@ class Item < ActiveRecord::Base
   # calculated time left to expiry
   def time_left_in_seconds
     @end_time = calc_end_time(created_at, duration)
-    return @end_time - Time.now
+
+
+    time_left = [0, @end_time - Time.now].max
+
+    if time_left == 0
+      @open = false
+    else
+      @open = true
+    end
+
+    return time_left
   end
 
   # shows time left in terms on days, hours, minutes, seconds
@@ -34,29 +54,23 @@ class Item < ActiveRecord::Base
 
     t = time_left_in_seconds
 
-    mm, ss = t.divmod(60)            #=> [4515, 21]
-    hh, mm = mm.divmod(60)           #=> [75, 15]
-    dd, hh = hh.divmod(24) 
-              #=> [3, 3]
-    return "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+    if @open   
 
-  end
+      mm, ss = t.divmod(60)            #=> [4515, 21]
+      hh, mm = mm.divmod(60)           #=> [75, 15]
+      dd, hh = hh.divmod(24) 
+                #=> [3, 3]
+      return "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
 
-  #show items to exclude user, and include category, if defined
-  def self.show_items user_id, category_id
+    else
 
-      list = []
-       
-      if category_id == 0
-        list = Item.where.not(user_id: user_id).all
-      else
-        list = Item.where('user_id != ? AND category_id = ?', user_id, category_id)
-      end
+      return @open
 
-      return list 
+    end
 
-  end
+  end 
 
+  # returns user with highest bid
   def leading_bidder
     if bids.count ==0
       return "No bidder"
@@ -65,11 +79,21 @@ class Item < ActiveRecord::Base
     end
   end
 
+  # returns highest bid amount
   def max_bid
     if bids.count == 0
       return 0
     else
       return self.bids.max_by(&:amount).amount
+    end
+  end
+
+  # returns maximum bid from a specific user
+  def max_user_bid user
+    if bids.where(user_id: user.id).count == 0
+      return 0
+    else
+      return self.bids.where(user_id: user.id).max_by(&:amount).amount
     end
   end
 

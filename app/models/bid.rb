@@ -2,7 +2,7 @@ class Bid < ActiveRecord::Base
 	belongs_to :item
   belongs_to :user  
   validate :bid_must_be_higher_than_max
-  validate :cannot_bid_more_than_3_times
+ 
 
   # def dollars
   #   return (amount.to_f / 100)
@@ -15,15 +15,12 @@ class Bid < ActiveRecord::Base
     end
   end
 
-  # bidder cannot bid more than 3 times
-  def cannot_bid_more_than_3_times
-    if user.bids.where(item_id: item.id).count >= 3
-      errors.add(:amount, " - sorry you've already bid three times")
-    end
-  end
+  # # bidder cannot bid more than 3 times
+  # def cannot_bid_more_than_3_times
+  #   if user.bids.where(item_id: item.id).count >= 3
+  #     errors.add(:amount, " - sorry you've already bid three times")
+  #   end
+  # end
 
-  def self.remove_all
-    Bid.all.each { |b| b.destroy}
-  end
 
 end

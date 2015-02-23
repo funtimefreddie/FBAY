@@ -26,11 +26,7 @@
     <strong>Category:</strong>
     <%= Category.find(@item.category_id).name %>
   </p>
-
-  <p>
-    <strong>Maximum bids per user</strong>
-    <%= @item.bid_limit %>
-  </p>
+ 
   <div class="panel panel-footer"> 
     <strong>Time left:</strong>
     <%= @item.time_present %>
@@ -41,8 +37,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= link_to "Amount", :sort => "amount" %></th>
-      <th>Item</th>
+      <th><%= link_to "Amount", :sort => "amount" %></th>     
       <th>User</th>
       <th colspan="3"></th>
     </tr>
@@ -51,32 +46,23 @@
   <tbody>
     <% @item.bids.order("amount desc").each do |bid| %>
       <tr>
-        <td><%= bid.amount %></td>
-        <td><%= bid.item_id %></td>
-        <td><%= bid.user_id %></td>
-        <td><%= link_to 'Show',    item_bids_path(bid) %></td>
-        <td><%= link_to 'Edit',    item_bids_path(bid.item) %></td>
-        <td><%= link_to 'Destroy', item_bids_path(bid.item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= bid.amount %></td>      
+        <td><%= bid.user.name %></td>       
       </tr>
     <% end %>
   </tbody>
 </table>
 
 
+<% if @item.user != current_user %> 
+  <%= link_to 'New Bid', new_item_bid_path(:item_id => @item.id) %><br>
+  <%= link_to 'Back', items_path %><br>  
+<% else %>  
+  <%= link_to 'Back', my_items_path %><br>
+<% end %>
 
-<% if @item.user != current_user %>
-
-<!-- There is an issue in this block  -->
-  <% if current_user.bids.where(item_id: @item.id).count < @item.bid_limit %> 
-    <%= link_to 'New Bid', new_item_bid_path(:item_id => @item.id) %><br>
-  <% else %>
-    No more bids allowed
-  <% end %><br>
-
-  <%= link_to 'Back', items_path %>
-<% else %>
+<% if can? :update, @item %>
   <%= link_to 'Edit', edit_item_path(@item) %><br>
-  <%= link_to 'Back', my_items_path %>
 <% end %>
 
 
