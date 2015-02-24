@@ -17,7 +17,11 @@ class Item < ActiveRecord::Base
     where('bids.user_id = ?', user)
   }
 
-  attr_accessor :end_time, :open  
+  attr_accessor :end_time, :open, :emailed
+
+  def initialize
+      @emailed = false
+  end
 
   def name_must_start_with_f
 
@@ -98,13 +102,24 @@ class Item < ActiveRecord::Base
   end
 
   def email_bidders
-
-    User.item_bidders(self).uniq.each {
-
+    User.item_bidders(self).uniq.each { |u|
+      # email the user
 
     }
+
+    # update attribute so we know we've sent the email already
+    @emailed = true
+
   end
 
+  def self.email_bidders
+
+    # loop items.  If closed and email not sent, send emails
+    Item.all.each { |i|
+      if i.open == false and i.emailed == false then
+        i.email_bidders
+      end
+    }
 
   end
 
