@@ -10,7 +10,7 @@ storage :fog # using AWS
     end
 
     version :preview do
-        process :resize_to_fit => [256,256]
+        process :resize_to_fit => [400,400]
     end
 
     version :large do

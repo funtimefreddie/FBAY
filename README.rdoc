@@ -1,11 +1,13 @@
 To do list
 
+- sort list of bids on item/show page
+- all the stuff that happens at auction expiry - e.g., an alert to say you have won
+- back button on show page, when accessed via bidded items page, goes back to wrong place - fix
 - email all bidders at the end of auction
 - push to heroku
 
-To pull
+To pull/fork
 
-- git pull origin master
 - create application.yml file in config/locales directory
 - add YOUR aws details
 - rake db:seed

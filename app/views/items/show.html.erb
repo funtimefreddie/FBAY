@@ -36,8 +36,9 @@
 
  <% if @item.bids.count > 0 %>
 
-  <table class="table">
-    <thead>
+
+  <tbody>
+    <% @item.bids.order("amount desc").each do |bid| %>
       <tr>
         <th>Amount</th>     
         <th>User</th>

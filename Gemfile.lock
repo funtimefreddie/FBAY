@@ -41,15 +41,15 @@ GEM
     autoprefixer-rails (5.1.5)
       execjs
       json
-    aws-sdk (2.0.23)
-      aws-sdk-resources (= 2.0.23)
-    aws-sdk-core (2.0.23)
+    aws-sdk (2.0.24)
+      aws-sdk-resources (= 2.0.24)
+    aws-sdk-core (2.0.24)
       builder (~> 3.0)
       jmespath (~> 1.0)
       multi_json (~> 1.0)
       multi_xml (~> 0.5)
-    aws-sdk-resources (2.0.23)
-      aws-sdk-core (= 2.0.23)
+    aws-sdk-resources (2.0.24)
+      aws-sdk-core (= 2.0.24)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -149,13 +149,13 @@ GEM
     fog-serverlove (0.1.1)
       fog-core
       fog-json
-    fog-softlayer (0.4.0)
+    fog-softlayer (0.4.1)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.0)
       fog-core
       fog-json
-    fog-terremark (0.0.3)
+    fog-terremark (0.0.4)
       fog-core
       fog-xml
     fog-vmfusion (0.0.1)
@@ -172,11 +172,11 @@ GEM
     globalid (0.3.2)
       activesupport (>= 4.1.0)
     hike (1.2.3)
-    holamkm (0.0.0)
+    holamkm (0.0.1)
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
-    jbuilder (2.2.6)
+    jbuilder (2.2.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jmespath (1.0.2)
@@ -240,7 +240,7 @@ GEM
       json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    sass (3.4.11)
+    sass (3.4.12)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -294,7 +294,7 @@ DEPENDENCIES
   figaro
   fog
   freddies_gem (~> 0.0.1)
-  holamkm (~> 0.0.0)
+  holamkm (= 0.0.1)
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick

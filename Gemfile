@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 
 
 gem 'freddies_gem', '~> 0.0.1'
-gem 'holamkm', '~> 0.0.0'
 
 gem 'cancan'
+gem 'holamkm', '0.0.1'
 
 gem 'carrierwave'
 gem 'fog'
